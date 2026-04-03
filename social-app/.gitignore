@@ -1,18 +1,9 @@
 # Dependencies
 node_modules/
-*/node_modules/
 
 # Environment variables
 .env
 .env.*
-!.env.example
-!.env*.example
-*/.env
-*/.env.*
-!*/.env.example
-!*/.env*.example
-backend/.env
-frontend/.env
 
 # Secrets and private keys
 *.pem
@@ -27,7 +18,6 @@ frontend/.env
 # Build outputs
 build/
 dist/
-frontend/build/
 
 # Logs
 *.log
