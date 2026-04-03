@@ -206,43 +206,6 @@ npm start      # Starts on http://localhost:3000
 ```
 
 ---
-
-## Deployment
-
-### Step 1 — MongoDB Atlas
-1. Create a free cluster at [mongodb.com/atlas](https://mongodb.com/atlas)
-2. Add a database user
-3. Whitelist `0.0.0.0/0` (all IPs) for Render compatibility
-4. Copy your connection string
-
-### Step 2 — Cloudinary
-1. Create a free account at [cloudinary.com](https://cloudinary.com)
-2. Copy your Cloud Name, API Key, and API Secret from the dashboard
-
-### Step 3 — Backend on Render
-1. Push your code to GitHub
-2. Go to [render.com](https://render.com) → New Web Service
-3. Connect your GitHub repo
-4. Settings:
-   - **Root directory**: `backend`
-   - **Build command**: `npm install`
-   - **Start command**: `npm start`
-5. Add all environment variables from `.env.example`
-6. Deploy — copy your Render URL (e.g. `https://social-app-api.onrender.com`)
-
-### Step 4 — Frontend on Vercel
-1. Go to [vercel.com](https://vercel.com) → New Project
-2. Import your GitHub repo
-3. Settings:
-   - **Root directory**: `frontend`
-   - **Framework preset**: Create React App
-4. Add environment variable:
-   - `REACT_APP_API_URL` = `https://your-backend.onrender.com/api`
-5. Update `backend/.env` `CLIENT_URL` to your Vercel URL and redeploy backend
-6. Deploy!
-
----
-
 ## Design Decisions
 
 - **Embedded comments** — Comments are stored as subdocuments in the Post document. This avoids needing a third collection and is efficient for the expected scale.
