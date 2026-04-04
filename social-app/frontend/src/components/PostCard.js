@@ -9,6 +9,7 @@ import {
   MoreVert, Send, ExpandMore, ExpandLess,
 } from '@mui/icons-material';
 import { format } from 'timeago.js';
+import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import { postsAPI } from '../utils/api';
 import { getAvatarGradient, getInitials } from '../utils/avatar';
@@ -60,6 +61,7 @@ const PostCard = ({ post: initialPost, onDeleted }) => {
   const [likeLoading, setLikeLoading] = useState(false);
   const [menuAnchor, setMenuAnchor] = useState(null);
   const [imageExpanded, setImageExpanded] = useState(false);
+  const navigate = useNavigate();
 
   const isOwner = user && (post.author === user._id || post.author?._id === user._id);
 
@@ -142,12 +144,15 @@ const PostCard = ({ post: initialPost, onDeleted }) => {
 
         {/* Header */}
         <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', mb: 1.5 }}>
-          <Box sx={{ display: 'flex', gap: 1.5, alignItems: 'center' }}>
+          <Box 
+            sx={{ display: 'flex', gap: 1.5, alignItems: 'center', cursor: 'pointer', '&:hover': { opacity: 0.8 } }}
+            onClick={() => navigate(`/profile/${post.author?._id || post.author}`)}
+          >
             <Avatar sx={{ width: 42, height: 42, fontWeight: 700, fontSize: '0.85rem', background: getAvatarGradient(post.authorUsername) }}>
               {getInitials(post.authorUsername)}
             </Avatar>
             <Box>
-              <Typography fontWeight={700} variant="body2" sx={{ lineHeight: 1.2 }}>
+              <Typography fontWeight={700} variant="body2" sx={{ lineHeight: 1.2, '&:hover': { textDecoration: 'underline' } }}>
                 @{post.authorUsername}
               </Typography>
               <Typography variant="caption" color="text.muted">

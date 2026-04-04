@@ -28,6 +28,7 @@ app.use(cors({
 // ─── Routes ────────────────────────────────────────────────────────────────────
 app.use('/api/auth', require('./routes/auth.routes'));
 app.use('/api/posts', require('./routes/post.routes'));
+app.use('/api/users', require('./routes/user.routes'));
 
 // Health check endpoint
 app.get('/', (req, res) => {

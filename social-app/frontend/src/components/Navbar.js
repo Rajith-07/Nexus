@@ -65,8 +65,8 @@ const Navbar = () => {
               </IconButton>
             </Tooltip>
 
-            <Tooltip title={user?.username}>
-              <IconButton onClick={(e) => setAnchorEl(e.currentTarget)} sx={{ p: 0.5 }}>
+            <Tooltip title={user?.username + " Profile"}>
+              <IconButton component={RouterLink} to="/profile" sx={{ p: 0.5 }}>
                 <Avatar
                   sx={{
                     width: 36, height: 36, fontSize: '0.8rem', fontWeight: 700,
@@ -77,37 +77,11 @@ const Navbar = () => {
                 </Avatar>
               </IconButton>
             </Tooltip>
-
-            <Menu
-              anchorEl={anchorEl}
-              open={Boolean(anchorEl)}
-              onClose={() => setAnchorEl(null)}
-              transformOrigin={{ horizontal: 'right', vertical: 'top' }}
-              anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
-              PaperProps={{
-                sx: {
-                  mt: 1, minWidth: 200,
-                  background: '#0F1629',
-                  border: '1px solid #1E2B45',
-                  borderRadius: 3,
-                },
-              }}
-            >
-              <Box sx={{ px: 2, py: 1.5 }}>
-                <Typography fontWeight={600} variant="body2">{user?.username}</Typography>
-                <Typography variant="caption" color="text.secondary">{user?.email}</Typography>
-              </Box>
-              <Divider />
-              <MenuItem onClick={() => { navigate('/feed'); setAnchorEl(null); }}>
-                <ListItemIcon><DynamicFeed fontSize="small" /></ListItemIcon>
-                Feed
-              </MenuItem>
-              <Divider />
-              <MenuItem onClick={handleLogout} sx={{ color: 'error.main' }}>
-                <ListItemIcon><Logout fontSize="small" color="error" /></ListItemIcon>
-                Sign out
-              </MenuItem>
-            </Menu>
+            <Tooltip title="Sign out">
+              <IconButton onClick={handleLogout} sx={{ color: 'error.main', ml: 1 }}>
+                <Logout />
+              </IconButton>
+            </Tooltip>
           </Box>
         ) : (
           <Box sx={{ display: 'flex', gap: 1 }}>

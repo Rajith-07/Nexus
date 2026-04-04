@@ -62,4 +62,10 @@ export const postsAPI = {
     api.delete(`/posts/${postId}/comments/${commentId}`),
 };
 
+// ─── Users API ────────────────────────────────────────────────────────────────
+export const usersAPI = {
+  getProfile: (id) => id ? api.get(`/users/${id}`) : api.get('/users/profile'),
+  updateProfile: (data) => api.patch('/users/profile', data),
+};
+
 export default api;

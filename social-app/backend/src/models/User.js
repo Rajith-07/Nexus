@@ -41,6 +41,8 @@ const userSchema = new mongoose.Schema(
       maxlength: [150, 'Bio cannot exceed 150 characters'],
       default: '',
     },
+    followers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
+    following: [{ type: mongoose.Schema.Types.ObjectId, ref: 'User' }],
   },
   {
     timestamps: true, // Adds createdAt and updatedAt
