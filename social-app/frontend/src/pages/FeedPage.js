@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
-  Box, Typography, CircularProgress, Button, Skeleton, Alert,
+  Box, Typography, CircularProgress, Button, Skeleton, Alert, IconButton
 } from '@mui/material';
 import { Refresh, Explore } from '@mui/icons-material';
 import { postsAPI } from '../utils/api';
@@ -115,16 +115,17 @@ const FeedPage = () => {
             {pagination.total > 0 ? `${pagination.total} posts` : 'No posts yet'}
           </Typography>
         </Box>
-        <Button
-          variant="outlined"
-          size="small"
-          startIcon={<Refresh />}
+        <IconButton
           onClick={handleRefresh}
           disabled={loading}
-          sx={{ borderRadius: '10px' }}
+          aria-label="Refresh feed"
+          sx={{ 
+            border: (theme) => `1px solid ${theme.palette.divider}`, 
+            borderRadius: '10px' 
+          }}
         >
-          Refresh
-        </Button>
+          <Refresh />
+        </IconButton>
       </Box>
 
       {/* Create post box — only for authenticated users */}
